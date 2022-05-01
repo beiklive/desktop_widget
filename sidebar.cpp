@@ -6,7 +6,7 @@ sidebar::sidebar(QWidget *parent) :
     ui(new Ui::sidebar)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::FramelessWindowHint);
+    setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);
     setAttribute(Qt::WA_TranslucentBackground);
     this->resize(20, 200);
 }

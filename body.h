@@ -29,6 +29,9 @@ public:
     void drawbody();
     void LeftmousePress(QMouseEvent* event);
     void RightmousePress(QMouseEvent* event);
+
+    //config====================
+    void ChangeLock();
     ~MainWindow();
 
 protected:
@@ -45,8 +48,18 @@ private:
     QColor color;  //字体
     QPen pen;      //画笔
     QPoint last_mouse_position_;
-
     sidebar *bodybar = nullptr;
+
+    enum BODY_STATUS{
+        NONE,
+        BODY_LOCKED,
+        BODY_RELEASE
+    };
+
+    //config=====================
+    int isLock = BODY_RELEASE;
+
+
 };
 
 #endif // MAINWINDOW_H

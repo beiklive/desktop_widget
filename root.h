@@ -6,6 +6,8 @@
 #define log(str) (qDebug().noquote() << mylogtime() << "[info]" << str)
 #include <QWidget>
 #include <QVector>
+#include<QMenu>
+#include <qsystemtrayicon.h>
 #include "body.h"
 namespace Ui {
 class root;
@@ -18,12 +20,18 @@ class root : public QWidget
 public:
     explicit root(QWidget *parent = nullptr);
     void CreateBody();
+    void SysTrayIcon();
     ~root();
 
 private:
     Ui::root *ui;
     MainWindow *body{nullptr};
+    QSystemTrayIcon* mSysTrayIcon;
     QVector<MainWindow *> body_box;
+
+    struct tray_config{
+        bool isclock = false;
+    }root_config;
 };
 
 #endif // ROOT_H

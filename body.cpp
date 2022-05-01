@@ -1,12 +1,12 @@
 #include "body.h"
-#include "ui_mainwindow.h"
+#include "ui_body.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::FramelessWindowHint);
+    setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);
     setAttribute(Qt::WA_TranslucentBackground);
     log("start up");
 
@@ -51,9 +51,9 @@ void MainWindow::drawScale()
 void MainWindow::drawbody(){
     painter.begin(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.setBrush(QBrush(QColor(214, 214, 214,200)));
+    painter.setBrush(QBrush(QColor(214, 214, 214,100)));
 //    painter.setPen(Qt::transparent);
-painter.setPen(QColor(161, 161, 161));
+    painter.setPen(QColor(161, 161, 161));
     QRect rect = this->rect();
     rect.setWidth(rect.width() - 1);
     rect.setHeight(rect.height() - 1);
@@ -85,13 +85,28 @@ void MainWindow::RightmousePress(QMouseEvent *event)
 
 }
 
+void MainWindow::ChangeLock()
+{
+    isLock = (isLock == BODY_RELEASE)? BODY_LOCKED : BODY_RELEASE;
+    log(QString("change clock to %1").arg(isLock));
+    update();
+    if(isLock){
+        this->setFixedSize(this->geometry().size());
+    }else{
+
+        this->setFixedSize(QSize(9999999,9999999));
+    }
+
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 void MainWindow::paintEvent(QPaintEvent *event){
-
-    drawbody();
+    if(isLock == BODY_RELEASE){
+        drawbody();
+    }
     drawScale();
     log("paintEvent");
 }
@@ -109,28 +124,32 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
 void MainWindow::mousePressEvent(QMouseEvent* event)
 {
-    switch(event->button()){
-       case Qt::LeftButton:
-            LeftmousePress(event);
-            break;
-       case Qt::RightButton:
-            RightmousePress(event);
-            break;
-        default:{}
+    if(isLock == BODY_RELEASE){
+        switch(event->button()){
+           case Qt::LeftButton:
+                LeftmousePress(event);
+                break;
+           case Qt::RightButton:
+                RightmousePress(event);
+                break;
+            default:{}
+        }
     }
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent* event)
 {
-    if (!event->buttons().testFlag(Qt::LeftButton))
-        return;
-    const QPoint position = pos() + event->globalPos() - last_mouse_position_;
-    move(position.x(), position.y());
-    if(bodybar != nullptr){
-        auto bodySize = this->size();
-        auto bodyPos = this->pos();
+    if(isLock == BODY_RELEASE){
+        if (!event->buttons().testFlag(Qt::LeftButton))
+            return;
+        const QPoint position = pos() + event->globalPos() - last_mouse_position_;
+        move(position.x(), position.y());
+        if(bodybar != nullptr){
+            auto bodySize = this->size();
+            auto bodyPos = this->pos();
 
-        bodybar->move(bodyPos.x()+bodySize.width()+10, bodyPos.y());
+            bodybar->move(bodyPos.x()+bodySize.width()+10, bodyPos.y());
+        }
+        last_mouse_position_ = event->globalPos();
     }
-    last_mouse_position_ = event->globalPos();
 }
