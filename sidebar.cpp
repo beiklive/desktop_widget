@@ -8,7 +8,7 @@ sidebar::sidebar(QWidget *parent) :
     ui->setupUi(this);
     setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);
     setAttribute(Qt::WA_TranslucentBackground);
-    this->resize(20, 200);
+    this->resize(30, 200);
 }
 
 void sidebar::init(QWidget *body)
@@ -16,9 +16,10 @@ void sidebar::init(QWidget *body)
     tempbody = body;
     if(tempbody == nullptr)
         return;
-    log("body get");
+    log("[sidebar::init] body get");
 
     barappear();
+    SetBtn();
 }
 
 void sidebar::barappear()
@@ -75,14 +76,49 @@ void sidebar::barhidden()
 void sidebar::drawbody(){
     painter.begin(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.setBrush(QBrush(QColor(214, 214, 214,200)));
-//    painter.setPen(Qt::transparent);
-    painter.setPen(QColor(161, 161, 161));
+    painter.setBrush(QBrush(QColor(224, 224, 224,1)));
+    painter.setPen(QColor(224, 224, 224, 1));
     QRect rect = this->rect();
     rect.setWidth(rect.width() - 1);
     rect.setHeight(rect.height() - 1);
-    painter.drawRoundedRect(rect, 5, 5);
+    painter.drawRoundedRect(rect, 10, 10);
     painter.end();
+}
+
+void sidebar::SetBtn()
+{
+    QVBoxLayout* pvLayout = new QVBoxLayout();
+    DPushButton *btn1 = new DPushButton();
+    btn1->InitIcon("/res/btn/open.png");
+    btn1->setToolTip("open new");
+    btn1->Initscale(this->width(), this->width());
+    pvLayout->addWidget(btn1);
+
+    DPushButton *btn2 = new DPushButton();
+    btn2->InitIcon("/res/btn/copy.png");
+    btn2->setToolTip("copy this");
+    btn2->Initscale(this->width(), this->width());
+    pvLayout->addWidget(btn2);
+
+    DPushButton *btn3 = new DPushButton();
+    btn3->InitIcon("/res/btn/close.png");
+    btn3->setToolTip("close this");
+    btn3->Initscale(this->width(), this->width());
+    pvLayout->addWidget(btn3);
+
+    DPushButton *btn4 = new DPushButton();
+    btn4->InitIcon("/res/btn/setting.png");
+    btn4->setToolTip("setting");
+    btn4->Initscale(this->width(), this->width());
+    pvLayout->addWidget(btn4);
+
+    DPushButton *btn5 = new DPushButton();
+    btn5->InitIcon("/res/btn/lock.png");
+    btn5->setToolTip("lock");
+    btn5->Initscale(this->width(), this->width());
+    pvLayout->addWidget(btn5);
+    pvLayout->setContentsMargins(0,0,0,0);
+    this->setLayout(pvLayout);
 }
 
 bool sidebar::isclose()
@@ -112,6 +148,6 @@ void sidebar::paintEvent(QPaintEvent *event)
 void sidebar::closeEvent(QCloseEvent *event)
 {
     this->close();
-    log("close");
+    log("[sidebar::closeEvent] close");
     tempbody = nullptr;
 }

@@ -51,13 +51,12 @@ void MainWindow::drawScale()
 void MainWindow::drawbody(){
     painter.begin(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.setBrush(QBrush(QColor(214, 214, 214,100)));
-//    painter.setPen(Qt::transparent);
-    painter.setPen(QColor(161, 161, 161));
+    painter.setBrush(QBrush(QColor(224, 224, 224,30)));
+    painter.setPen(QColor(224, 224, 224));
     QRect rect = this->rect();
     rect.setWidth(rect.width() - 1);
     rect.setHeight(rect.height() - 1);
-    painter.drawRoundedRect(rect, 5, 5);
+    painter.drawRoundedRect(rect, 3, 3);
     painter.end();
 }
 

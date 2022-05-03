@@ -27,7 +27,7 @@ void root::SysTrayIcon()
 {
     log("init mSysTrayIcon");
     mSysTrayIcon = new QSystemTrayIcon(this);
-    QIcon icon = QIcon("://E:/QT_WORK/PopupClock/PopupClock/DDJ.ico");
+    QIcon icon = QIcon("://res/DDJ.png");
     mSysTrayIcon->setToolTip("desktop widget");
     mSysTrayIcon->setIcon(icon);
     mSysTrayIcon->show();

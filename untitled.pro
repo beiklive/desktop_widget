@@ -25,17 +25,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    dpushbutton.cpp \
         main.cpp \
     sidebar.cpp \
     body.cpp \
     root.cpp
 
 HEADERS += \
+    dpushbutton.h \
     sidebar.h \
     body.h \
     root.h
 
 FORMS += \
+    dpushbutton.ui \
     sidebar.ui \
     body.ui \
     root.ui

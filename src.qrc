@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>E:/QT_WORK/PopupClock/PopupClock/DDJ.ico</file>
+        <file>res/DDJ.png</file>
+        <file>res/btn/none.png</file>
+        <file>res/btn/none-hover.png</file>
     </qresource>
 </RCC>

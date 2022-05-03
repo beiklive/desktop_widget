@@ -13,6 +13,8 @@
 #include <QPropertyAnimation>
 #include <QParallelAnimationGroup>
 #include <QCloseEvent>
+#include <QVBoxLayout>
+#include "dpushbutton.h"
 namespace Ui {
 class sidebar;
 }
@@ -23,10 +25,14 @@ class sidebar : public QWidget
 
 public:
     explicit sidebar(QWidget *parent = nullptr);
+    //init ======================
     void init(QWidget *body);
+    void drawbody();
+    void SetBtn();
+
+    // animation =============
     void barappear();
     void barhidden();
-    void drawbody();
     bool isclose();
 
     ~sidebar();
