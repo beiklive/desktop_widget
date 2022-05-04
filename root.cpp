@@ -6,18 +6,17 @@ root::root(QWidget *parent) :
     ui(new Ui::root)
 {
     ui->setupUi(this);
-    log("root system start");
+    log("[root::root] construct init");
     setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);
     setAttribute(Qt::WA_TranslucentBackground);
     SysTrayIcon();
     CreateBody();
+    body_box[0]->setbrowser("D:/QT_Project/desktop_widget/res/html/index.html");
 }
 
 void root::CreateBody()
 {
-    log("enter CreateBody()");
-
-    log("create new");
+    log("[root::CreateBody] create new body");
     body = new MainWindow();
     body_box.append(body);
     body->show();
@@ -25,7 +24,7 @@ void root::CreateBody()
 
 void root::SysTrayIcon()
 {
-    log("init mSysTrayIcon");
+    log("[root::SysTrayIcon] init mSysTrayIcon");
     mSysTrayIcon = new QSystemTrayIcon(this);
     QIcon icon = QIcon("://res/DDJ.png");
     mSysTrayIcon->setToolTip("desktop widget");
@@ -53,13 +52,14 @@ void root::SysTrayIcon()
     m_action_exit->setText("Exit");
     m_menu->addAction(m_action_exit);
 
+    // connect slots
     connect(m_action_create, &QAction::triggered, this,
             [this]{
                 emit this->CreateBody();
             }
     );
     connect(m_action_lock, &QAction::triggered, this,
-            [this, m_action_lock,m_action_create]{
+            [this,m_action_create]{
             root_config.isclock = (root_config.isclock == true? false:true);
             m_action_create->setDisabled(root_config.isclock);
             for (auto iter = body_box.begin(); iter != body_box.end(); iter++)

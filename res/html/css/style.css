@@ -1,0 +1,45 @@
+body {
+    padding: 0;
+    margin: 0;
+    color: #3498db;
+    font-family: SAOUI;
+}
+
+@font-face {
+    font-family: SAOUI;
+    src: url('SAOUI.ttf');
+}
+
+.box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+}
+
+.box #time {
+    position: absolute;
+    top: 43%;
+    left: 8px;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    font-size: 26px;
+}
+
+.box .img {
+    position: absolute;
+}
+
+.mid{
+	top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}

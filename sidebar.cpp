@@ -119,6 +119,8 @@ void sidebar::SetBtn()
     pvLayout->addWidget(btn5);
     pvLayout->setContentsMargins(0,0,0,0);
     this->setLayout(pvLayout);
+
+
 }
 
 bool sidebar::isclose()

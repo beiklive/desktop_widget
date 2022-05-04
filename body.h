@@ -11,7 +11,7 @@
 #include <QResizeEvent>
 #include <QMouseEvent>
 #include <QEvent>
-
+#include <QWebEngineView>
 #include "sidebar.h"
 namespace Ui {
 class MainWindow;
@@ -29,7 +29,7 @@ public:
     void drawbody();
     void LeftmousePress(QMouseEvent* event);
     void RightmousePress(QMouseEvent* event);
-
+    void setbrowser(QString url);
     //config====================
     void ChangeLock();
     ~MainWindow();
@@ -49,7 +49,7 @@ private:
     QPen pen;      //画笔
     QPoint last_mouse_position_;
     sidebar *bodybar = nullptr;
-
+    QWebEngineView *view{nullptr};
     enum BODY_STATUS{
         NONE,
         BODY_LOCKED,

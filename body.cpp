@@ -7,8 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);
+
     setAttribute(Qt::WA_TranslucentBackground);
-    log("start up");
+    log("[MainWindow::MainWindow] start up");
 
 }
 
@@ -63,20 +64,20 @@ void MainWindow::drawbody(){
 void MainWindow::LeftmousePress(QMouseEvent* event)
 {
     last_mouse_position_ = event->globalPos();
-    log("LeftmousePress");
+    log("[MainWindow::LeftmousePress] LeftmousePress");
 
 }
 
 void MainWindow::RightmousePress(QMouseEvent *event)
 {
-    log("RightmousePress");
+    log("[MainWindow::RightmousePress] RightmousePress");
     if(bodybar != nullptr && !bodybar->isclose()){
-        log("remove sidebar");
+        log("[MainWindow::RightmousePress] remove sidebar");
         bodybar->barhidden();
     }else{
         delete bodybar;
         bodybar = nullptr;
-        log("create sidebar");
+        log("[MainWindow::RightmousePress] create sidebar");
         bodybar = new sidebar();
         bodybar->show();
         bodybar->init(GetMe());
@@ -84,15 +85,29 @@ void MainWindow::RightmousePress(QMouseEvent *event)
 
 }
 
+void MainWindow::setbrowser(QString url)
+{
+    view = new QWebEngineView(this);
+    view->setUrl(QUrl(url));
+    view->page()->setBackgroundColor(QColor(0,0,0,0));
+    view->setContentsMargins(5,5,5,5);
+//    view->setContextMenuPolicy(Qt::NoContextMenu);
+    this->setCentralWidget(view);
+    view->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+}
+
 void MainWindow::ChangeLock()
 {
     isLock = (isLock == BODY_RELEASE)? BODY_LOCKED : BODY_RELEASE;
-    log(QString("change clock to %1").arg(isLock));
+    log(QString("[MainWindow::ChangeLock] change clock to %1").arg(isLock));
     update();
     if(isLock){
         this->setFixedSize(this->geometry().size());
+        if(bodybar != nullptr && !bodybar->isclose()){
+            log("[MainWindow::ChangeLock] remove sidebar");
+            bodybar->barhidden();
+        }
     }else{
-
         this->setFixedSize(QSize(9999999,9999999));
     }
 
@@ -106,8 +121,8 @@ void MainWindow::paintEvent(QPaintEvent *event){
     if(isLock == BODY_RELEASE){
         drawbody();
     }
-    drawScale();
-    log("paintEvent");
+//    drawScale();
+    log("[MainWindow::paintEvent] paintEvent");
 }
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
