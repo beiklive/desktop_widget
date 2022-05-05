@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
-QWidget *MainWindow::GetMe()
+MainWindow *MainWindow::GetMe()
 {
     return this;
 }
