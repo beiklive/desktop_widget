@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
     dpushbutton.cpp \
+    geturldiag.cpp \
         main.cpp \
     sidebar.cpp \
     body.cpp \
@@ -33,12 +34,14 @@ SOURCES += \
 
 HEADERS += \
     dpushbutton.h \
+    geturldiag.h \
     sidebar.h \
     body.h \
     root.h
 
 FORMS += \
     dpushbutton.ui \
+    geturldiag.ui \
     sidebar.ui \
     body.ui \
     root.ui

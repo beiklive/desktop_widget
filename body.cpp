@@ -6,8 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);
-
+    setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
+    setWindowFlag(Qt::WindowStaysOnTopHint, true);
     setAttribute(Qt::WA_TranslucentBackground);
     log("[MainWindow::MainWindow] start up");
 
@@ -109,6 +109,7 @@ void MainWindow::ChangeLock()
         }
     }else{
         this->setFixedSize(QSize(9999999,9999999));
+
     }
 
 }

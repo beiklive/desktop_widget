@@ -15,7 +15,7 @@
 #include <QCloseEvent>
 #include <QVBoxLayout>
 #include "dpushbutton.h"
-
+#include "geturldiag.h"
 namespace Ui {
 class sidebar;
 }

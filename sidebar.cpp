@@ -95,11 +95,11 @@ void sidebar::SetBtn()
     btn_open->Initscale(this->width(), this->width());
     pvLayout->addWidget(btn_open);
 
-    DPushButton *btn_copy = new DPushButton();
-    btn_copy->InitIcon("/res/btn/copy.png");
-    btn_copy->setToolTip("copy this");
-    btn_copy->Initscale(this->width(), this->width());
-    pvLayout->addWidget(btn_copy);
+//    DPushButton *btn_copy = new DPushButton();
+//    btn_copy->InitIcon("/res/btn/copy.png");
+//    btn_copy->setToolTip("copy this");
+//    btn_copy->Initscale(this->width(), this->width());
+//    pvLayout->addWidget(btn_copy);
 
     DPushButton *btn_close = new DPushButton();
     btn_close->InitIcon("/res/btn/close.png");
@@ -121,8 +121,22 @@ void sidebar::SetBtn()
     pvLayout->setContentsMargins(0,0,0,0);
     this->setLayout(pvLayout);
 
+    connect(btn_open, &QPushButton::clicked, [this]{
+        GetUrlDiag *dlgUrl = new GetUrlDiag();
+        log("[sidebar::connect ] btn_open");
+        if (dlgUrl->exec() == QDialog::Accepted){
+            MainWindow *body = (MainWindow *)tempbody;
+            auto url = dlgUrl->GetUrl();
+            log("[sidebar::connect ] btn_open GetUrl:" + url);
+            body->setbrowser(url);
+        }
+        delete dlgUrl;
+    });
+
+
     connect(btn_close, &QPushButton::clicked, [this]{
         MainWindow *body = (MainWindow *)tempbody;
+        log("[sidebar::connect ] btn_close");
         body->close();
     });
 }
