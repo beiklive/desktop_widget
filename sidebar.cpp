@@ -121,12 +121,11 @@ void sidebar::SetBtn()
     pvLayout->setContentsMargins(0,0,0,0);
     this->setLayout(pvLayout);
 
-//    connect(btn3, SIGNAL(clicked()), this, [this]{
+    connect(btn3, &QPushButton::clicked, [this]{
         MainWindow *body = (MainWindow *)tempbody;
         body->close();
         this->close();
-//    });
-
+    });
 }
 
 bool sidebar::isclose()
