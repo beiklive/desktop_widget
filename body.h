@@ -37,9 +37,14 @@ public:
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
+    virtual void closeEvent(QCloseEvent *event) override;
 protected:
     virtual void mousePressEvent(QMouseEvent* event) override;
     virtual void mouseMoveEvent(QMouseEvent* event) override;
+
+
+
+
 private:
     Ui::MainWindow *ui;
     QMouseEvent *me;

@@ -124,6 +124,13 @@ void MainWindow::paintEvent(QPaintEvent *event){
 //    drawScale();
     log("[MainWindow::paintEvent] paintEvent");
 }
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    this->bodybar->close();
+    this->close();
+    log("[MainWindow::closeEvent] close");
+}
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
 
