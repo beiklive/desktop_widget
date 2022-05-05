@@ -24,7 +24,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    QWidget* GetMe();
+    MainWindow* GetMe();
     void drawScale();
     void drawbody();
     void LeftmousePress(QMouseEvent* event);

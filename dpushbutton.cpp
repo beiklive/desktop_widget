@@ -37,7 +37,6 @@ void DPushButton::DefaultInit()
 
     InitIcon(":/res/btn/none.png");
 
-//            InitIcon("D:/QT_Project/desktop_widget/res/btn/none.png");
 }
 
 void DPushButton::InitIcon(QString IconUrl)

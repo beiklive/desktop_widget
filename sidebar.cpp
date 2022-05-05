@@ -1,6 +1,7 @@
 #include "sidebar.h"
 #include "ui_sidebar.h"
 #include <QRect>
+#include "body.h"
 sidebar::sidebar(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::sidebar)
@@ -120,6 +121,11 @@ void sidebar::SetBtn()
     pvLayout->setContentsMargins(0,0,0,0);
     this->setLayout(pvLayout);
 
+//    connect(btn3, SIGNAL(clicked()), this, [this]{
+        MainWindow *body = (MainWindow *)tempbody;
+        body->close();
+        this->close();
+//    });
 
 }
 
