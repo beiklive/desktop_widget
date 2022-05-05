@@ -89,39 +89,39 @@ void sidebar::drawbody(){
 void sidebar::SetBtn()
 {
     QVBoxLayout* pvLayout = new QVBoxLayout();
-    DPushButton *btn1 = new DPushButton();
-    btn1->InitIcon("/res/btn/open.png");
-    btn1->setToolTip("open new");
-    btn1->Initscale(this->width(), this->width());
-    pvLayout->addWidget(btn1);
+    DPushButton *buttonOpen = new DPushButton();
+    buttonOpen->InitIcon("/res/btn/open.png");
+    buttonOpen->setToolTip("open new");
+    buttonOpen->Initscale(this->width(), this->width());
+    pvLayout->addWidget(buttonOpen);
 
-    DPushButton *btn2 = new DPushButton();
-    btn2->InitIcon("/res/btn/copy.png");
-    btn2->setToolTip("copy this");
-    btn2->Initscale(this->width(), this->width());
-    pvLayout->addWidget(btn2);
+    DPushButton *buttonCopy = new DPushButton();
+    buttonCopy->InitIcon("/res/btn/copy.png");
+    buttonCopy->setToolTip("copy this");
+    buttonCopy->Initscale(this->width(), this->width());
+    pvLayout->addWidget(buttonCopy);
 
-    DPushButton *btn3 = new DPushButton();
-    btn3->InitIcon("/res/btn/close.png");
-    btn3->setToolTip("close this");
-    btn3->Initscale(this->width(), this->width());
-    pvLayout->addWidget(btn3);
+    DPushButton *buttonClose = new DPushButton();
+    buttonClose->InitIcon("/res/btn/close.png");
+    buttonClose->setToolTip("close this");
+    buttonClose->Initscale(this->width(), this->width());
+    pvLayout->addWidget(buttonClose);
 
-    DPushButton *btn4 = new DPushButton();
-    btn4->InitIcon("/res/btn/setting.png");
-    btn4->setToolTip("setting");
-    btn4->Initscale(this->width(), this->width());
-    pvLayout->addWidget(btn4);
+    DPushButton *buttonSetting = new DPushButton();
+    buttonSetting->InitIcon("/res/btn/setting.png");
+    buttonSetting->setToolTip("setting");
+    buttonSetting->Initscale(this->width(), this->width());
+    pvLayout->addWidget(buttonSetting);
 
-    DPushButton *btn5 = new DPushButton();
-    btn5->InitIcon("/res/btn/lock.png");
-    btn5->setToolTip("lock");
-    btn5->Initscale(this->width(), this->width());
-    pvLayout->addWidget(btn5);
+    DPushButton *buttonLock = new DPushButton();
+    buttonLock->InitIcon("/res/btn/lock.png");
+    buttonLock->setToolTip("lock");
+    buttonLock->Initscale(this->width(), this->width());
+    pvLayout->addWidget(buttonLock);
     pvLayout->setContentsMargins(0,0,0,0);
     this->setLayout(pvLayout);
 
-    connect(btn3, &QPushButton::clicked, [this]{
+    connect(buttonClose, &QPushButton::clicked, [this]{
         MainWindow *body = (MainWindow *)tempbody;
         body->close();
         this->close();
