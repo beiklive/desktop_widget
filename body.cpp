@@ -10,7 +10,10 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowFlag(Qt::WindowStaysOnTopHint, true);
     setAttribute(Qt::WA_TranslucentBackground);
     log("[MainWindow::MainWindow] start up");
-
+    resizeBtn = new ResizeBtn();
+    resizeBtn->init(this->GetMe());
+    resizeBtn->move(this->pos().x()+this->width()+5, this->pos().y()+this->height() + 5);
+    resizeBtn->show();
 }
 
 MainWindow *MainWindow::GetMe()
@@ -106,13 +109,15 @@ void MainWindow::ChangeLock(bool Lock)
 //        this->setFixedSize(this->geometry().size());
         if(bodybar != nullptr && !bodybar->isclose()){
             log("[MainWindow::ChangeLock] remove sidebar");
+            resizeBtn->hide();
             bodybar->barhidden();
+            update();
         }
     }else{
+        resizeBtn->show();
 //        this->setFixedSize(QSize(9999999,9999999));
 
     }
-
 }
 
 MainWindow::~MainWindow()
@@ -129,6 +134,7 @@ void MainWindow::paintEvent(QPaintEvent *event){
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    this->resizeBtn->close();
     this->bodybar->close();
     this->close();
     log("[MainWindow::closeEvent] close");
@@ -142,6 +148,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
         auto bodyPos = this->pos();
 
         bodybar->move(bodyPos.x()+bodySize.width()+10, bodyPos.y());
+        resizeBtn->move(bodyPos.x()+bodySize.width()+5, bodyPos.y()+bodySize.height() + 5);
     }
 }
 
@@ -167,12 +174,15 @@ void MainWindow::mouseMoveEvent(QMouseEvent* event)
             return;
         const QPoint position = pos() + event->globalPos() - last_mouse_position_;
         move(position.x(), position.y());
+        auto bodySize = this->size();
+        auto bodyPos = this->pos();
         if(bodybar != nullptr){
-            auto bodySize = this->size();
-            auto bodyPos = this->pos();
+
 
             bodybar->move(bodyPos.x()+bodySize.width()+10, bodyPos.y());
+
         }
+        resizeBtn->move(bodyPos.x()+bodySize.width()+5, bodyPos.y()+bodySize.height() + 5);
         last_mouse_position_ = event->globalPos();
     }
 }

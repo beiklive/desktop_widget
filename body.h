@@ -13,6 +13,7 @@
 #include <QEvent>
 #include <QWebEngineView>
 #include "sidebar.h"
+#include "resizebtn.h"
 namespace Ui {
 class MainWindow;
 }
@@ -60,6 +61,7 @@ private:
     QPen pen;      //画笔
     QPoint last_mouse_position_;
     sidebar *bodybar = nullptr;
+    ResizeBtn *resizeBtn = nullptr;
     QWebEngineView *view{nullptr};
     enum BODY_STATUS{
         NONE,
