@@ -1,6 +1,6 @@
 #include "dpushbutton.h"
 #include "ui_dpushbutton.h"
-
+#pragma execution_character_set("utf-8")
 void DPushButton::enterEvent(QEnterEvent  *event)
 {
     auto style = QString("border-image: url(%1);").arg(splitbtnIconUrl(btnIconUrl)[0] + "-hover." + splitbtnIconUrl(btnIconUrl)[1]);

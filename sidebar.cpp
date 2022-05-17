@@ -1,4 +1,5 @@
 #include "sidebar.h"
+#pragma execution_character_set("utf-8")
 #include "ui_sidebar.h"
 #include <QRect>
 #include "body.h"
@@ -139,6 +140,13 @@ void sidebar::SetBtn()
         log("[sidebar::connect ] btn_close");
         body->close();
     });
+
+    connect(btn_lock, &QPushButton::clicked, [this]{
+        MainWindow *body = (MainWindow *)tempbody;
+        log("[sidebar::connect ] btn_close");
+        body->ChangeLock(true);
+    });
+
 }
 
 bool sidebar::isclose()

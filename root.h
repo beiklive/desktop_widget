@@ -6,6 +6,7 @@
 #define log(str) (qDebug().noquote() << mylogtime() << "[info]" << str)
 #include <QWidget>
 #include <QVector>
+#include <QMap>
 #include<QMenu>
 #include <qsystemtrayicon.h>
 #include "body.h"
@@ -28,7 +29,7 @@ private:
     MainWindow *body{nullptr};
     QSystemTrayIcon* mSysTrayIcon;
     QVector<MainWindow *> body_box;
-
+    QMap<int, MainWindow *> bodybox;
     struct tray_config{
         bool isclock = false;
     }root_config;

@@ -96,19 +96,20 @@ void MainWindow::setbrowser(QString url)
     view->setAttribute(Qt::WA_TransparentForMouseEvents, true);
 }
 
-void MainWindow::ChangeLock()
+void MainWindow::ChangeLock(bool Lock)
 {
-    isLock = (isLock == BODY_RELEASE)? BODY_LOCKED : BODY_RELEASE;
-    log(QString("[MainWindow::ChangeLock] change clock to %1").arg(isLock));
+    isLock = (Lock)? BODY_LOCKED : BODY_RELEASE;
+
+    log(QString("[MainWindow::ChangeLock] change clock to %1").arg(Lock));
     update();
-    if(isLock){
-        this->setFixedSize(this->geometry().size());
+    if(Lock){
+//        this->setFixedSize(this->geometry().size());
         if(bodybar != nullptr && !bodybar->isclose()){
             log("[MainWindow::ChangeLock] remove sidebar");
             bodybar->barhidden();
         }
     }else{
-        this->setFixedSize(QSize(9999999,9999999));
+//        this->setFixedSize(QSize(9999999,9999999));
 
     }
 

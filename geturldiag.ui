@@ -34,7 +34,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string>website</string>
+          <string>网址</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
@@ -71,7 +71,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
-          <string>Local File</string>
+          <string>本地路径</string>
          </property>
          <property name="checkable">
           <bool>false</bool>
@@ -118,7 +118,7 @@
        <item>
         <widget class="QPushButton" name="Set">
          <property name="text">
-          <string>Set</string>
+          <string>确定</string>
          </property>
         </widget>
        </item>
@@ -138,7 +138,7 @@
        <item>
         <widget class="QPushButton" name="Cancel">
          <property name="text">
-          <string>Cancel</string>
+          <string>取消</string>
          </property>
         </widget>
        </item>

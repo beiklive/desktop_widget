@@ -30,8 +30,14 @@ public:
     void LeftmousePress(QMouseEvent* event);
     void RightmousePress(QMouseEvent* event);
     void setbrowser(QString url);
+    void setIndex(int index){
+        body_index = index;
+    }
+    int  getIndex(){
+        return body_index;
+    }
     //config====================
-    void ChangeLock();
+    void ChangeLock(bool Lock);
     ~MainWindow();
 
 protected:
@@ -63,7 +69,7 @@ private:
 
     //config=====================
     int isLock = BODY_RELEASE;
-
+    int body_index;
 
 };
 

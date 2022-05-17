@@ -1,6 +1,6 @@
 #include "geturldiag.h"
 #include "ui_geturldiag.h"
-
+#pragma execution_character_set("utf-8")
 GetUrlDiag::GetUrlDiag(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::GetUrlDiag)

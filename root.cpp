@@ -1,6 +1,6 @@
 #include "root.h"
 #include "ui_root.h"
-
+#pragma execution_character_set("utf-8")
 root::root(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::root)
@@ -34,14 +34,14 @@ void root::SysTrayIcon()
     auto m_menu = new QMenu(this);
     //  create a body
     auto m_action_create = new QAction(m_menu);
-    m_action_create->setText("Create");
+    m_action_create->setText("新建窗口");
     m_menu->addAction(m_action_create);
 
 
     // lock all widget body
     auto m_action_lock = new QAction(m_menu);
     m_action_lock->setCheckable(true);
-    m_action_lock->setText("LockAll");
+    m_action_lock->setText("全部锁定");
     m_menu->addAction(m_action_lock);
 
 
@@ -49,7 +49,7 @@ void root::SysTrayIcon()
 
     // Exit program
     auto m_action_exit = new QAction(m_menu);
-    m_action_exit->setText("Exit");
+    m_action_exit->setText("退出程序");
     m_menu->addAction(m_action_exit);
 
     // connect slots
@@ -62,9 +62,8 @@ void root::SysTrayIcon()
             [this,m_action_create]{
             root_config.isclock = (root_config.isclock == true? false:true);
             m_action_create->setDisabled(root_config.isclock);
-            for (auto iter = body_box.begin(); iter != body_box.end(); iter++)
-            {
-                (*iter)->ChangeLock();
+            for(int i = 0; i < body_box.length(); i++){
+                body_box[i]->ChangeLock(root_config.isclock);
             }
      });
     connect(m_action_exit, &QAction::triggered, this, &QApplication::quit);
