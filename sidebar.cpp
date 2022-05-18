@@ -128,7 +128,7 @@ void sidebar::SetBtn()
         if (dlgUrl->exec() == QDialog::Accepted){
             MainWindow *body = (MainWindow *)tempbody;
             auto url = dlgUrl->GetUrl();
-            log("[sidebar::connect ] btn_open GetUrl:" + url);
+            log("[sidebar::connect ] btn_open GetUrl:" + url.toString());
             body->setbrowser(url);
         }
         delete dlgUrl;

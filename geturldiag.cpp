@@ -39,7 +39,7 @@ int GetUrlDiag::GetType()
     return currentIndex;
 }
 
-QString GetUrlDiag::GetUrl()
+QUrl GetUrlDiag::GetUrl()
 {
     return currentUrl;
 }
@@ -96,7 +96,7 @@ void GetUrlDiag::on_Set_clicked()
     switch(currentIndex){
     case WEBSITEURL:{
         if(!ui->weblineEdit->text().isEmpty()){
-            currentUrl = ui->weblineEdit->text();
+            currentUrl = QUrl::fromPercentEncoding(ui->weblineEdit->text().toLocal8Bit());
         }else{
             QMessageBox::critical(this, "critical", "url is empty!");
         }
@@ -104,7 +104,7 @@ void GetUrlDiag::on_Set_clicked()
     }
     case LOCALHTMLURL:{
         if(!ui->locallineEdit->text().isEmpty()){
-            currentUrl = ui->locallineEdit->text();
+            currentUrl = QUrl::fromLocalFile(ui->locallineEdit->text());
         }else{
             QMessageBox::critical(this, "critical", "url is empty!");
         }
