@@ -9,6 +9,7 @@ QT       += core gui webenginewidgets
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = desktop_widget
+DESTDIR = bin/
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -56,4 +57,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     src.qrc
 
-
+OBJECTS_DIR = build/obj/
+MOC_DIR = build/
+RCC_DIR = build/
+UI_DIR = build/

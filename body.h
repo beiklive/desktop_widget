@@ -30,7 +30,7 @@ public:
     void drawbody();
     void LeftmousePress(QMouseEvent* event);
     void RightmousePress(QMouseEvent* event);
-    void setbrowser(QString url);
+    void setbrowser(QUrl url);
     void setIndex(int index){
         body_index = index;
     }

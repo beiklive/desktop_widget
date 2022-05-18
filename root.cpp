@@ -10,8 +10,6 @@ root::root(QWidget *parent) :
     setWindowFlags(Qt::FramelessWindowHint | Qt::Tool | Qt::WindowStaysOnTopHint);
     setAttribute(Qt::WA_TranslucentBackground);
     SysTrayIcon();
-    CreateBody();
-    body_box[0]->setbrowser("D:/QT_Project/desktop_widget/res/html/index.html");
 }
 
 void root::CreateBody()

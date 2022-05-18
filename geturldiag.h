@@ -18,7 +18,7 @@ public:
     void init();
     void setCheckable(int index);
     int GetType();
-    QString GetUrl();
+    QUrl GetUrl();
     void drawbody();
     ~GetUrlDiag();
 protected:
@@ -51,7 +51,7 @@ private:
     QColor color;  //字体
     QPen pen;      //画笔
     int currentIndex;
-    QString currentUrl;
+    QUrl currentUrl;
 };
 
 #endif // GETURLDIAG_H

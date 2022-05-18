@@ -88,10 +88,10 @@ void MainWindow::RightmousePress(QMouseEvent *event)
 
 }
 
-void MainWindow::setbrowser(QString url)
+void MainWindow::setbrowser(QUrl url)
 {
     view = new QWebEngineView(this);
-    view->setUrl(QUrl(url));
+    view->setUrl(url);
     view->page()->setBackgroundColor(QColor(0,0,0,0));
     view->setContentsMargins(5,5,5,5);
 //    view->setContextMenuPolicy(Qt::NoContextMenu);
