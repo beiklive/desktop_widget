@@ -16,8 +16,8 @@ class DPushButton : public QPushButton
 {
     Q_OBJECT
 protected:
-    virtual void enterEvent(QEnterEvent  *event);
-    virtual void leaveEvent(QEvent *event);
+    virtual void enterEvent(QEnterEvent  *event) override;
+    virtual void leaveEvent(QEvent *event) override;
 public:
     explicit DPushButton(QPushButton *parent = nullptr);
     ~DPushButton();

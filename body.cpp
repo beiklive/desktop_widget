@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     resizeBtn = new ResizeBtn();
     resizeBtn->init(this->GetMe());
     resizeBtn->move(this->pos().x()+this->width()+5, this->pos().y()+this->height() + 5);
-    resizeBtn->show();
+
 }
 
 MainWindow *MainWindow::GetMe()
@@ -77,6 +77,7 @@ void MainWindow::RightmousePress(QMouseEvent *event)
     if(bodybar != nullptr && !bodybar->isclose()){
         log("[MainWindow::RightmousePress] remove sidebar");
         bodybar->barhidden();
+        resizeBtn->barhidden();
     }else{
         delete bodybar;
         bodybar = nullptr;
@@ -84,6 +85,7 @@ void MainWindow::RightmousePress(QMouseEvent *event)
         bodybar = new sidebar();
         bodybar->show();
         bodybar->init(GetMe());
+        resizeBtn->barappear();
     }
 
 }
@@ -114,7 +116,7 @@ void MainWindow::ChangeLock(bool Lock)
             update();
         }
     }else{
-        resizeBtn->show();
+
 //        this->setFixedSize(QSize(9999999,9999999));
 
     }
@@ -134,9 +136,13 @@ void MainWindow::paintEvent(QPaintEvent *event){
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    this->resizeBtn->close();
-    this->bodybar->close();
-    this->close();
+//    this->resizeBtn->close();
+//    this->bodybar->close();
+//    this->close();
+    this->resizeBtn->barhidden();
+    this->bodybar->barhidden();
+    this->hide();
+    delete view;
     log("[MainWindow::closeEvent] close");
 }
 void MainWindow::resizeEvent(QResizeEvent *event)

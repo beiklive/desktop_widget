@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 SOURCES += \
     dpushbutton.cpp \
+    dragbtn.cpp \
     geturldiag.cpp \
         main.cpp \
     resizebtn.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
 
 HEADERS += \
     dpushbutton.h \
+    dragbtn.h \
     geturldiag.h \
     resizebtn.h \
     sidebar.h \
